@@ -1,0 +1,9 @@
+
+
+--added on 08-01-2024 by PP-------------------------------------------START---------------------------------------------
+
+ Scaffold-DbContext "Server=ARCHE-ITD440\SQLEXPRESS;Database=Connexcel;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities -Context DBContext
+
+--added on 08-01-2024 by PP-------------------------------------------END-----------------------------------------------
+
+

@@ -1,0 +1,17 @@
+D:\project\Connexcel-BE\Connexcel-BE\Helper\bin\Debug\net8.0\Helper.deps.json
+D:\project\Connexcel-BE\Connexcel-BE\Helper\bin\Debug\net8.0\Helper.dll
+D:\project\Connexcel-BE\Connexcel-BE\Helper\bin\Debug\net8.0\Helper.pdb
+D:\project\Connexcel-BE\Connexcel-BE\Helper\bin\Debug\net8.0\DataLayer.dll
+D:\project\Connexcel-BE\Connexcel-BE\Helper\bin\Debug\net8.0\DTO.dll
+D:\project\Connexcel-BE\Connexcel-BE\Helper\bin\Debug\net8.0\DataLayer.pdb
+D:\project\Connexcel-BE\Connexcel-BE\Helper\bin\Debug\net8.0\DTO.pdb
+D:\project\Connexcel-BE\Connexcel-BE\Helper\obj\Debug\net8.0\Helper.csproj.AssemblyReference.cache
+D:\project\Connexcel-BE\Connexcel-BE\Helper\obj\Debug\net8.0\Helper.GeneratedMSBuildEditorConfig.editorconfig
+D:\project\Connexcel-BE\Connexcel-BE\Helper\obj\Debug\net8.0\Helper.AssemblyInfoInputs.cache
+D:\project\Connexcel-BE\Connexcel-BE\Helper\obj\Debug\net8.0\Helper.AssemblyInfo.cs
+D:\project\Connexcel-BE\Connexcel-BE\Helper\obj\Debug\net8.0\Helper.csproj.CoreCompileInputs.cache
+D:\project\Connexcel-BE\Connexcel-BE\Helper\obj\Debug\net8.0\Helper.csproj.CopyComplete
+D:\project\Connexcel-BE\Connexcel-BE\Helper\obj\Debug\net8.0\Helper.dll
+D:\project\Connexcel-BE\Connexcel-BE\Helper\obj\Debug\net8.0\refint\Helper.dll
+D:\project\Connexcel-BE\Connexcel-BE\Helper\obj\Debug\net8.0\Helper.pdb
+D:\project\Connexcel-BE\Connexcel-BE\Helper\obj\Debug\net8.0\ref\Helper.dll
