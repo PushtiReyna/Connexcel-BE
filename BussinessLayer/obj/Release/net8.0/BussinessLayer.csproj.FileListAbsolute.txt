@@ -1,0 +1,6 @@
+D:\project\Connexcel-BE\Connexcel-BE\BussinessLayer\obj\Release\net8.0\BussinessLayer.csproj.AssemblyReference.cache
+D:\project\Connexcel-BE\Connexcel-BE\BussinessLayer\obj\Release\net8.0\BussinessLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:\project\Connexcel-BE\Connexcel-BE\BussinessLayer\obj\Release\net8.0\BussinessLayer.AssemblyInfoInputs.cache
+D:\project\Connexcel-BE\Connexcel-BE\BussinessLayer\obj\Release\net8.0\BussinessLayer.AssemblyInfo.cs
+D:\project\Connexcel-BE\Connexcel-BE\BussinessLayer\obj\Release\net8.0\BussinessLayer.csproj.CoreCompileInputs.cache
+D:\project\Connexcel-BE\Connexcel-BE\BussinessLayer\obj\Release\net8.0\BussinessLayer.sourcelink.json

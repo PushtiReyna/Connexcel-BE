@@ -7,6 +7,7 @@ D:\project\Connexcel-BE\Connexcel-BE\DataLayer\obj\Debug\net8.0\DataLayer.Genera
 D:\project\Connexcel-BE\Connexcel-BE\DataLayer\obj\Debug\net8.0\DataLayer.AssemblyInfoInputs.cache
 D:\project\Connexcel-BE\Connexcel-BE\DataLayer\obj\Debug\net8.0\DataLayer.AssemblyInfo.cs
 D:\project\Connexcel-BE\Connexcel-BE\DataLayer\obj\Debug\net8.0\DataLayer.csproj.CoreCompileInputs.cache
+D:\project\Connexcel-BE\Connexcel-BE\DataLayer\obj\Debug\net8.0\DataLayer.sourcelink.json
 D:\project\Connexcel-BE\Connexcel-BE\DataLayer\obj\Debug\net8.0\DataLayer.dll
 D:\project\Connexcel-BE\Connexcel-BE\DataLayer\obj\Debug\net8.0\refint\DataLayer.dll
 D:\project\Connexcel-BE\Connexcel-BE\DataLayer\obj\Debug\net8.0\DataLayer.pdb

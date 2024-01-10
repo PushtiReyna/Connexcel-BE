@@ -1,4 +1,3 @@
-D:\project\Connexcel-BE\Connexcel-BE\WebAPI\bin\Debug\net8.0\appsettings.Development.json
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\bin\Debug\net8.0\appsettings.json
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\bin\Debug\net8.0\WebAPI.exe
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\bin\Debug\net8.0\WebAPI.deps.json
@@ -133,6 +132,7 @@ D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Debug\net8.0\WebAPI.AssemblyInfo
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Debug\net8.0\WebAPI.csproj.CoreCompileInputs.cache
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Debug\net8.0\WebAPI.MvcApplicationPartsAssemblyInfo.cs
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Debug\net8.0\WebAPI.MvcApplicationPartsAssemblyInfo.cache
+D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Debug\net8.0\WebAPI.sourcelink.json
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Debug\net8.0\staticwebassets.build.json
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Debug\net8.0\staticwebassets.development.json
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Debug\net8.0\staticwebassets\msbuild.WebAPI.Microsoft.AspNetCore.StaticWebAssets.props
@@ -147,6 +147,3 @@ D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Debug\net8.0\refint\WebAPI.dll
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Debug\net8.0\WebAPI.pdb
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Debug\net8.0\WebAPI.genruntimeconfig.cache
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Debug\net8.0\ref\WebAPI.dll
-D:\project\Connexcel-BE\Connexcel-BE\WebAPI\bin\Debug\net8.0\EntityFramework.SqlServer.dll
-D:\project\Connexcel-BE\Connexcel-BE\WebAPI\bin\Debug\net8.0\EntityFramework.dll
-D:\project\Connexcel-BE\Connexcel-BE\WebAPI\bin\Debug\net8.0\System.Web.Providers.dll

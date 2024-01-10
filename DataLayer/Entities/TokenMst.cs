@@ -5,7 +5,7 @@ namespace DataLayer.Entities;
 
 public partial class TokenMst
 {
-    public int TokenId { get; set; }
+    public int Id { get; set; }
 
     public DateTime CreatedDate { get; set; }
 

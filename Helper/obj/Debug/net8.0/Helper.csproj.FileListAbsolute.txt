@@ -10,6 +10,7 @@ D:\project\Connexcel-BE\Connexcel-BE\Helper\obj\Debug\net8.0\Helper.GeneratedMSB
 D:\project\Connexcel-BE\Connexcel-BE\Helper\obj\Debug\net8.0\Helper.AssemblyInfoInputs.cache
 D:\project\Connexcel-BE\Connexcel-BE\Helper\obj\Debug\net8.0\Helper.AssemblyInfo.cs
 D:\project\Connexcel-BE\Connexcel-BE\Helper\obj\Debug\net8.0\Helper.csproj.CoreCompileInputs.cache
+D:\project\Connexcel-BE\Connexcel-BE\Helper\obj\Debug\net8.0\Helper.sourcelink.json
 D:\project\Connexcel-BE\Connexcel-BE\Helper\obj\Debug\net8.0\Helper.csproj.CopyComplete
 D:\project\Connexcel-BE\Connexcel-BE\Helper\obj\Debug\net8.0\Helper.dll
 D:\project\Connexcel-BE\Connexcel-BE\Helper\obj\Debug\net8.0\refint\Helper.dll

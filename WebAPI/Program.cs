@@ -8,20 +8,24 @@ using WebAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
 string connection = builder.Configuration["ConnectionStrings:EntitiesConnection"] ?? "";
 builder.Services.AddDbContext<DBContext>(x =>
 {
     x.UseSqlServer(connection);
 });
 
+
 builder.Services.DIScopes();
+
+// Add services to the container.
+
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+
+// Allow cors
+builder.Services.AddCors(x => x.AddDefaultPolicy(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+
 
 builder.Services.AddSwaggerGen(x =>
 {
@@ -80,22 +84,24 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
-
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
+
+app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed(origin => true).AllowCredentials());
+
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(x => x.DefaultModelsExpandDepth(-1));
-}
+
+app.UseSwagger();
+app.UseSwaggerUI(x => x.DefaultModelsExpandDepth(-1));
+
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
+//app.UseAuthentication();
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.MapControllers();
 

@@ -14,6 +14,7 @@ D:\project\Connexcel-BE\Connexcel-BE\ServiceLayer\obj\Debug\net8.0\ServiceLayer.
 D:\project\Connexcel-BE\Connexcel-BE\ServiceLayer\obj\Debug\net8.0\ServiceLayer.AssemblyInfoInputs.cache
 D:\project\Connexcel-BE\Connexcel-BE\ServiceLayer\obj\Debug\net8.0\ServiceLayer.AssemblyInfo.cs
 D:\project\Connexcel-BE\Connexcel-BE\ServiceLayer\obj\Debug\net8.0\ServiceLayer.csproj.CoreCompileInputs.cache
+D:\project\Connexcel-BE\Connexcel-BE\ServiceLayer\obj\Debug\net8.0\ServiceLayer.sourcelink.json
 D:\project\Connexcel-BE\Connexcel-BE\ServiceLayer\obj\Debug\net8.0\ServiceLayer.csproj.CopyComplete
 D:\project\Connexcel-BE\Connexcel-BE\ServiceLayer\obj\Debug\net8.0\ServiceLayer.dll
 D:\project\Connexcel-BE\Connexcel-BE\ServiceLayer\obj\Debug\net8.0\refint\ServiceLayer.dll

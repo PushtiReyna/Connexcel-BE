@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\project\IIS Publish\Connexcel-BE</_PublishTargetUrl>
+    <History>True|2024-01-10T08:36:41.1318952Z;True|2024-01-10T12:00:18.9747666+05:30;True|2024-01-10T11:53:47.6015639+05:30;True|2024-01-10T11:50:37.9892807+05:30;True|2024-01-10T11:45:31.3199350+05:30;True|2024-01-10T11:40:24.9803842+05:30;True|2024-01-10T11:34:30.3942851+05:30;True|2024-01-10T11:28:03.2465860+05:30;True|2024-01-10T11:26:55.7539162+05:30;True|2024-01-09T11:04:57.5089162+05:30;True|2024-01-09T10:53:35.0612680+05:30;True|2024-01-09T10:31:19.2139850+05:30;False|2024-01-09T10:30:41.3162188+05:30;True|2024-01-09T10:28:43.7435698+05:30;True|2024-01-09T10:18:28.2021229+05:30;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

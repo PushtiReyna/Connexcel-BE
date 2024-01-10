@@ -1,0 +1,7 @@
+D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\WebAPI.csproj.AssemblyReference.cache
+D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\WebAPI.GeneratedMSBuildEditorConfig.editorconfig
+D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\WebAPI.AssemblyInfoInputs.cache
+D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\WebAPI.AssemblyInfo.cs
+D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\WebAPI.csproj.CoreCompileInputs.cache
+D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\WebAPI.MvcApplicationPartsAssemblyInfo.cache
+D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\WebAPI.sourcelink.json

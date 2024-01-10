@@ -1,5 +1,4 @@
 ﻿using DTO.ReqDTO;
-using DTO.ResDTO;
 using Helper.CommonHelpers;
 using Helper.CommonModels;
 
@@ -8,10 +7,12 @@ namespace BussinessLayer
     public class AuthBLL
     {
         private readonly AuthHelper _authHelper;
+        private readonly CommonRepo _commonRepo;
 
-        public AuthBLL(AuthHelper authHelper )
+        public AuthBLL(AuthHelper authHelper, CommonRepo commonRepo)
         {
             _authHelper = authHelper;
+            _commonRepo = commonRepo;
         }
         public async Task<CommonResponse> Login(LoginReqDTO request)
         {
