@@ -7,7 +7,7 @@ CREATE DATABASE Connexcel
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'UserMst')
 BEGIN 
 	CREATE TABLE UserMst(
-			Id int NOT NULL,
+			Id int identity(1,1) primary key NOT NULL,
 			IsActive bit NOT NULL,
 			IsDelete bit NOT NULL,
 			CreatedBy int NOT NULL,
@@ -25,14 +25,14 @@ BEGIN
 			GuardianName nvarchar(100) NULL,
 			GuardianPhone nvarchar(30) NULL,
 			Password nvarchar(Max) NOT NULL,
-			SchoolYearGroup	nvarchar(50) NOT NULL,
-			DateofBirth	datetime NOT NULL,
-			School	nvarchar(100) NOT NULL,
-			UseableHours nvarchar(50) NOT NULL,
-			HourlyRate nvarchar(50) NOT NULL,
-			PlatformPreference nvarchar(50) NOT NULL,
+			SchoolYearGroup	nvarchar(50)  NULL,
+			DateofBirth	datetime  NULL,
+			School	nvarchar(100)  NULL,
+			UseableHours nvarchar(50)  NULL,
+			HourlyRate nvarchar(50)  NULL,
+			PlatformPreference nvarchar(50)  NULL,
 			PlatformLink nvarchar(Max) NULL,
-			LastLogin datetime NOT NULL
+			LastLogin datetime  NULL
 	        );
 PRINT 'UserMst Table Created' 
 END
@@ -45,7 +45,7 @@ IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo
 			TABLE_NAME = 'TutorOfferingDetails')
 BEGIN 
 	CREATE TABLE dbo.TutorOfferingDetails(
-		    Id	int  NOT NULL,
+		    Id int identity(1,1) primary key NOT NULL,
 			IsActive bit NOT NULL,
 			IsDelete bit NOT NULL,
 			CreatedBy int NOT NULL,

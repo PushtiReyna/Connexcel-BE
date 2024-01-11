@@ -16,10 +16,12 @@ namespace WebAPI
             //BLL
             services.AddScoped<AuthBLL>();
             services.AddScoped<CommonBLL>();
+            services.AddScoped<UserBLL>();
 
             //Services
             services.AddScoped<IAuth, AuthImpl>();
             services.AddScoped<ICommon, CommonImpl>();
+            services.AddScoped<IUser, UserImpl>();
 
         }
     }

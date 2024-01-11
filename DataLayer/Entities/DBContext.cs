@@ -28,7 +28,7 @@ public partial class DBContext : DbContext
     {
         modelBuilder.Entity<TokenMst>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__TokenMst__3214EC072CE4FD68");
+            entity.HasKey(e => e.Id).HasName("PK__TokenMst__3214EC071112EFF6");
 
             entity.ToTable("TokenMst");
 
@@ -40,7 +40,7 @@ public partial class DBContext : DbContext
 
         modelBuilder.Entity<TutorOfferingDetail>(entity =>
         {
-            entity.HasNoKey();
+            entity.HasKey(e => e.Id).HasName("PK__TutorOff__3214EC07E0D94DA0");
 
             entity.Property(e => e.AgeGroup).HasMaxLength(50);
             entity.Property(e => e.CreatedDate).HasColumnType("datetime");
@@ -51,9 +51,9 @@ public partial class DBContext : DbContext
 
         modelBuilder.Entity<UserMst>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("UserMst");
+            entity.HasKey(e => e.Id).HasName("PK__UserMst__3214EC07867F614A");
+
+            entity.ToTable("UserMst");
 
             entity.Property(e => e.CreatedDate).HasColumnType("datetime");
             entity.Property(e => e.DateofBirth).HasColumnType("datetime");

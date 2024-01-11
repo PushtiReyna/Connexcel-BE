@@ -14,7 +14,6 @@ builder.Services.AddDbContext<DBContext>(x =>
     x.UseSqlServer(connection);
 });
 
-
 builder.Services.DIScopes();
 
 // Add services to the container.
@@ -69,7 +68,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("JsonWebTokenKeys:IssuerSigningKey").Value)),
         ValidIssuer = builder.Configuration.GetSection("JsonWebTokenKeys:ValidIssuer").Value,
         ValidAudience = builder.Configuration.GetSection("JsonWebTokenKeys:ValidAudience").Value,
-        ClockSkew = TimeSpan.FromMinutes(Convert.ToInt32(builder.Configuration.GetSection("JsonWebTokenKeys:TokenExpiryMin").Value)),
+        ClockSkew  = TimeSpan.Zero
     };
     x.Events = new JwtBearerEvents
     {
@@ -99,9 +98,9 @@ app.UseSwaggerUI(x => x.DefaultModelsExpandDepth(-1));
 
 app.UseHttpsRedirection();
 
-//app.UseAuthentication();
+app.UseAuthentication();
 
-//app.UseAuthorization();
+app.UseAuthorization();
 
 app.MapControllers();
 

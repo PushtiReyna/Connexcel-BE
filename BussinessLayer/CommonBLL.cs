@@ -5,11 +5,6 @@ namespace BussinessLayer
 {
     public class CommonBLL
     {
-        public CommonBLL()
-        {
-            
-        }
-
         public async Task<CommonResponse> GetUserType()
         {
             CommonResponse response = new CommonResponse();

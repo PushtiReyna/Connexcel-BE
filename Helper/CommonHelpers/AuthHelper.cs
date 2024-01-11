@@ -18,15 +18,13 @@ namespace Helper.CommonHelpers
         private readonly CommonRepo _commonRepo;
         private readonly IConfiguration _configuration;
         private readonly CommonHelper _commonHelper;
-        //private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AuthHelper(DBContext dbContext, CommonRepo commonRepo, IConfiguration configuration, CommonHelper commonHelper/*, IHttpContextAccessor httpContextAccessor*/)
+        public AuthHelper(DBContext dbContext, CommonRepo commonRepo, IConfiguration configuration, CommonHelper commonHelper)
         {
             _dbContext = dbContext;
             _commonRepo = commonRepo;
             _configuration = configuration;
             _commonHelper = commonHelper;
-         //   _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<CommonResponse> Login(LoginReqDTO request)
@@ -35,11 +33,13 @@ namespace Helper.CommonHelpers
             try
             {
                 LoginResDTO res = new LoginResDTO();
-               TokenMst token = new TokenMst();
+                TokenMst token = new TokenMst();
+                DateTime currentDateTime = _commonHelper.GetCurrentDateTime();
+
                 var userDetail = await _commonRepo.UserMstList().FirstOrDefaultAsync(x => (x.Email == request.EmailOrPhoneNo.Trim() || x.PhoneNo == request.EmailOrPhoneNo.Trim()) && x.Password == request.Password);
                 if (userDetail != null)
                 {
-                    var tokenString = await GenerateToken(request.EmailOrPhoneNo, request.Password);
+                    var tokenString = await GenerateToken(userDetail.Id.ToString());
                     string refreshtokenstring = await GenerateRefreshToken();
 
                     var tokenDetail = await _commonRepo.TokenMstList().FirstOrDefaultAsync(x => x.UserId == userDetail.Id);
@@ -50,7 +50,7 @@ namespace Helper.CommonHelpers
                         tokenDetail.TokenExpiryTime = DateTime.Now.AddMinutes(Convert.ToInt32(_configuration["JsonWebTokenKeys:TokenExpiryMin"]));
                         tokenDetail.RefreshToken = refreshtokenstring;
                         tokenDetail.RefreshTokenExpiryTime = DateTime.Now.AddMinutes(Convert.ToInt32(_configuration["JsonWebTokenKeys:RefreshTokenexpiryMin"]));
-                        tokenDetail.UpdatedDate = _commonHelper.GetCurrentDateTime();
+                        tokenDetail.UpdatedDate = currentDateTime;
                         _dbContext.Entry(tokenDetail).State = EntityState.Modified;
                         _dbContext.SaveChanges();
 
@@ -62,15 +62,14 @@ namespace Helper.CommonHelpers
                         token.TokenExpiryTime = DateTime.Now.AddMinutes(Convert.ToInt32(_configuration["JsonWebTokenKeys:TokenExpiryMin"]));
                         token.RefreshToken = refreshtokenstring;
                         token.RefreshTokenExpiryTime = DateTime.Now.AddMinutes(Convert.ToInt32(_configuration["JsonWebTokenKeys:RefreshTokenexpiryMin"]));
-                        token.CreatedDate = _commonHelper.GetCurrentDateTime();
-                       token.UserId = userDetail.Id;
+                        token.CreatedDate = currentDateTime;
+                        token.UpdatedDate = currentDateTime;
+                        token.UserId = userDetail.Id;
                         _dbContext.TokenMsts.Add(token);
                         _dbContext.SaveChanges();
 
                         res.TokenExpiryTime = token.TokenExpiryTime;
                     }
-
-                    //string userId = _httpContextAccessor.HttpContext?.User.FindFirstValue
 
                     res.Token = tokenString;
                     res.RefreshToken = refreshtokenstring;
@@ -104,6 +103,8 @@ namespace Helper.CommonHelpers
             try
             {
                 CreateTokenResDTO res = new CreateTokenResDTO();
+                DateTime currentDateTime = _commonHelper.GetCurrentDateTime();
+
                 var tokenDetail = await _commonRepo.TokenMstList().FirstOrDefaultAsync(x => x.Token == request.Token.Trim() && x.RefreshToken == request.RefreshToken.Trim());
                 if (tokenDetail != null)
                 {
@@ -124,9 +125,9 @@ namespace Helper.CommonHelpers
                         }, out securityToken);
 
                         var jwtSecurityToken = securityToken as JwtSecurityToken;
-                        var username = principal.Identity.Name;
+                        var userId = principal.Identity.Name;
 
-                        if (username == userDetail.Email || username == userDetail.PhoneNo)
+                        if (userId == userDetail.Id.ToString())
                         {
                             //if refresh token expired
                             if (tokenDetail.RefreshToken != refreshToken || tokenDetail.RefreshTokenExpiryTime <= DateTime.Now)
@@ -145,12 +146,12 @@ namespace Helper.CommonHelpers
                             else
                             {
                                 //if token expired but refreh token not expired
-                                var tokenString = await GenerateToken(userDetail.Email, userDetail.Password);
+                                var tokenString = await GenerateToken(userDetail.Id.ToString());
                                 string refreshtokenstring = await GenerateRefreshToken();
                                 tokenDetail.Token = tokenString;
                                 tokenDetail.TokenExpiryTime = DateTime.Now.AddMinutes(Convert.ToInt32(_configuration["JsonWebTokenKeys:TokenExpiryMin"]));
                                 tokenDetail.RefreshToken = refreshtokenstring;
-                                tokenDetail.UpdatedDate = _commonHelper.GetCurrentDateTime();
+                                tokenDetail.UpdatedDate = currentDateTime;
                                 _dbContext.Entry(tokenDetail).State = EntityState.Modified;
                                 _dbContext.SaveChanges();
 
@@ -181,14 +182,13 @@ namespace Helper.CommonHelpers
             return response;
         }
 
-        public async Task<string> GenerateToken(string EmailOrPhoneNo, string Password)
+        public async Task<string> GenerateToken(string UserId)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JsonWebTokenKeys:IssuerSigningKey"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var claims = new[]
             {
-                          new Claim(ClaimTypes.Name,EmailOrPhoneNo),
-                          new Claim("Password",Password)
+                          new Claim(ClaimTypes.Name,UserId),
             };
             var token = new JwtSecurityToken(_configuration["JsonWebTokenKeys:ValidIssuer"],
                 _configuration["JsonWebTokenKeys:ValidAudience"],

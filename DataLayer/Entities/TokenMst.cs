@@ -9,7 +9,7 @@ public partial class TokenMst
 
     public DateTime CreatedDate { get; set; }
 
-    public DateTime? UpdatedDate { get; set; }
+    public DateTime UpdatedDate { get; set; }
 
     public int UserId { get; set; }
 

@@ -20,6 +20,10 @@ namespace Helper.CommonHelpers
         {
             return _dbContext.UserMsts.Where(x => x.IsActive == isActive && x.IsDelete == isDelete).AsQueryable();
         }
+        public IQueryable<TutorOfferingDetail> TutorOfferingDetailList(bool isActive = true, bool isDelete = false)
+        {
+            return _dbContext.TutorOfferingDetails.Where(x => x.IsActive == isActive && x.IsDelete == isDelete).AsQueryable();
+        }
         public IQueryable<TokenMst> TokenMstList()
         {
             return _dbContext.TokenMsts.AsQueryable();

@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "z3R2mp4ezENSuCzcwE2lkNjOkeCilGOTLZlrNWMq+PmxEpgkgEir10dc9qUTTSIFYY13SELlIBYDcYyLlBcSbA==",
+  "dgSpecHash": "XkO85Wvb1FmU6RW/z8dmbfgMkL0Ax0iG+aghXyYfJECLR0XWfOLVRjf63YdY68VeuHVQmTxE7TLuA6imzYAhsg==",
   "success": true,
   "projectFilePath": "D:\\project\\Connexcel-BE\\Connexcel-BE\\Helper\\Helper.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Reyna\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Reyna\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
+    "C:\\Users\\Reyna\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\Reyna\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "C:\\Users\\Reyna\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Reyna\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Reyna\\.nuget\\packages\\microsoft.data.sqlclient\\5.1.1\\microsoft.data.sqlclient.5.1.1.nupkg.sha512",

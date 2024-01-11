@@ -34,6 +34,7 @@ D:\project\Connexcel-BE\Connexcel-BE\WebAPI\bin\Debug\net8.0\Microsoft.OpenApi.d
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\bin\Debug\net8.0\Mono.TextTemplating.dll
+D:\project\Connexcel-BE\Connexcel-BE\WebAPI\bin\Debug\net8.0\Newtonsoft.Json.dll
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll

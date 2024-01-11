@@ -41,19 +41,19 @@ public partial class UserMst
 
     public string Password { get; set; } = null!;
 
-    public string SchoolYearGroup { get; set; } = null!;
+    public string? SchoolYearGroup { get; set; }
 
-    public DateTime DateofBirth { get; set; }
+    public DateTime? DateofBirth { get; set; }
 
-    public string School { get; set; } = null!;
+    public string? School { get; set; }
 
-    public string UseableHours { get; set; } = null!;
+    public string? UseableHours { get; set; }
 
-    public string HourlyRate { get; set; } = null!;
+    public string? HourlyRate { get; set; }
 
-    public string PlatformPreference { get; set; } = null!;
+    public string? PlatformPreference { get; set; }
 
     public string? PlatformLink { get; set; }
 
-    public DateTime LastLogin { get; set; }
+    public DateTime? LastLogin { get; set; }
 }
