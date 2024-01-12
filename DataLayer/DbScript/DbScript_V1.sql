@@ -1,6 +1,6 @@
 --added on 10-01-2024 by PP-------------------------------------------START---------------------------------------------
 
-CREATE DATABASE Connexcel
+CREATE DATABASE ConnexcelDB
 
 
 

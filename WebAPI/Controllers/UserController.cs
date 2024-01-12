@@ -13,7 +13,7 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+  //  [Authorize]
     public class UserController : ControllerBase
     {
         public readonly IUser _iUser;
@@ -23,28 +23,56 @@ namespace WebAPI.Controllers
             _iUser = iUser;
         }
 
-        [HttpPost("GetUser")]
-        public async Task<CommonResponse> GetUser(GetUserReqViewModel request)
+        [HttpPost("GetAllUser")]
+        public async Task<CommonResponse> GetAllUser(GetAllUserReqViewModel request)
         {
             CommonResponse response = new CommonResponse();
             try
             {
-                response = await _iUser.GetUser(request.Adapt<GetUserUserReqDTO>());
-                GetUserUserResDTO resDTO = response.Data;
-                response.Data = resDTO.Adapt<GetUserUserResViewModel>();
+                response = await _iUser.GetAllUser(request.Adapt<GetAllUserUserReqDTO>());
+                GetAllUserUserResDTO resDTO = response.Data;
+                response.Data = resDTO.Adapt<GetAllUserUserResViewModel>();
             }
             catch { throw; }
             return response;
         }
 
-        [HttpPost("AddUser")]
-        public async Task<CommonResponse> AddUser(AddUserReqViewModel request)
+        [HttpPost("GetAllTutor")]
+        public async Task<CommonResponse> GetAllTutor(GetAllTutorReqViewModel request)
         {
             CommonResponse response = new CommonResponse();
             try
             {
-                response = await _iUser.AddUser(request.Adapt<AddUserReqDTO>());
-                AddUserResDTO resDTO = response.Data;
+                response = await _iUser.GetAllTutor(request.Adapt<GetAllTutorReqDTO>());
+                GetAllTutorResDTO resDTO = response.Data;
+                response.Data = resDTO.Adapt<GetAllTutorResViewModel>();
+            }
+            catch { throw; }
+            return response;
+        }
+
+        [HttpPost("GetAllStudent")]
+        public async Task<CommonResponse> GetAllStudent(GetAllStudentReqViewModel request)
+        {
+            CommonResponse response = new CommonResponse();
+            try
+            {
+                response = await _iUser.GetAllStudent(request.Adapt<GetAllStudentReqDTO>());
+                GetAllStudentResDTO resDTO = response.Data;
+                response.Data = resDTO.Adapt<GetAllStudentResViewModel>();
+            }
+            catch { throw; }
+            return response;
+        }
+
+        [HttpPost("AddEditUser")]
+        public async Task<CommonResponse> AddEditUser(AddEditUserReqViewModel request)
+        {
+            CommonResponse response = new CommonResponse();
+            try
+            {
+                response = await _iUser.AddEditUser(request.Adapt<AddEditUserReqDTO>());
+                AddEditUserResDTO resDTO = response.Data;
                 response.Data = resDTO.Adapt<AddUserResViewModel>();
             }
             catch { throw; }

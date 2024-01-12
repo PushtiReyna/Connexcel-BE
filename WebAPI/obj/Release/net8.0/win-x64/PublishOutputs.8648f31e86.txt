@@ -5,11 +5,8 @@ D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\win-x64\PubTmp\Ou
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\win-x64\PubTmp\Out\WebAPI.pdb
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\win-x64\PubTmp\Out\Azure.Core.dll
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\win-x64\PubTmp\Out\Azure.Identity.dll
-D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\win-x64\PubTmp\Out\EntityFramework.SqlServer.dll
-D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\win-x64\PubTmp\Out\EntityFramework.dll
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\win-x64\PubTmp\Out\Mapster.dll
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\win-x64\PubTmp\Out\Mapster.Core.dll
-D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\win-x64\PubTmp\Out\System.Web.Providers.dll
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\win-x64\PubTmp\Out\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\win-x64\PubTmp\Out\Microsoft.Bcl.AsyncInterfaces.dll
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\win-x64\PubTmp\Out\Microsoft.Data.SqlClient.dll
@@ -28,6 +25,7 @@ D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\win-x64\PubTmp\Ou
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\win-x64\PubTmp\Out\Microsoft.OpenApi.dll
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\win-x64\PubTmp\Out\Microsoft.SqlServer.Server.dll
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\win-x64\PubTmp\Out\Microsoft.Win32.SystemEvents.dll
+D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\win-x64\PubTmp\Out\Newtonsoft.Json.dll
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\win-x64\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\win-x64\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\project\Connexcel-BE\Connexcel-BE\WebAPI\obj\Release\net8.0\win-x64\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll

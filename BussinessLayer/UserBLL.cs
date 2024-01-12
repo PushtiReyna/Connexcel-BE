@@ -21,88 +21,59 @@ namespace BussinessLayer
             _commonHelper = commonHelper;
         }
 
-        public async Task<CommonResponse> GetUser(GetUserUserReqDTO request)
+        public async Task<CommonResponse> GetAllUser(GetAllUserUserReqDTO request)
         {
             CommonResponse response = new CommonResponse();
             try
             {
-                GetUserUserResDTO resDTO = new GetUserUserResDTO();
+                GetAllUserUserResDTO resDTO = new GetAllUserUserResDTO();
+                var lstUser = await (from userDetail in _commonRepo.UserMstList()
+                                     select new
+                                     {
+                                         userDetail.Id,
+                                         DateRegistred = userDetail.CreatedDate,
+                                         userDetail.UserType,
+                                         FullName = userDetail.FirstName + " " + userDetail.LastName,
+                                         userDetail.Email,
+                                         // NoOfCourses = userDetail.NumberOfCourses,
+                                         userDetail.LastLogin,
+                                         userDetail.IsActive,
+                                     }).ToListAsync();
 
-                List<UserList> lstUser = new List<UserList>();
-                lstUser = await (from userDetail in _commonRepo.UserMstList()
-                                 select new UserList
-                                 {
-                                     Id = userDetail.Id,
-                                     DateRegistred = userDetail.CreatedDate.Date,
-                                     UserType = userDetail.UserType,
-                                     UserName = userDetail.FirstName + " " + userDetail.LastName,
-                                     Email = userDetail.Email,
-                                     //  NoOfCourses = userDetail.NumberOfCourses,
-                                     LastLogin = userDetail.LastLogin,
-                                     Status = userDetail.IsActive.ToString(),
-                                 }).ToListAsync();
+                if (request.Search != null && !string.IsNullOrWhiteSpace(request.Search.Trim()))
+                {
+                    lstUser = lstUser.Where(x => x.FullName.ToLower().Contains(request.Search.ToLower())).ToList();
+                }
 
-                resDTO.TotalCount = lstUser.Count;
-
-                if (request.SearchByUserName != null && !string.IsNullOrWhiteSpace(request.SearchByUserName.Trim()))
+                if (request.IsTutor != null)
                 {
-                    lstUser = lstUser.Where(x => x.UserName.ToLower().Contains(request.SearchByUserName.ToLower())).ToList();
-                    resDTO.TotalCount = lstUser.Count;
-                }
-                if (request.SearchByEmail != null && !string.IsNullOrWhiteSpace(request.SearchByEmail.Trim()))
-                {
-                    lstUser = lstUser.Where(x => x.Email.ToLower().Contains(request.SearchByEmail.ToLower())).ToList();
-                    resDTO.TotalCount = lstUser.Count;
-                }
-                if (request.SearchByDateRegistred != null)
-                {
-                    lstUser = lstUser.Where(x => x.DateRegistred.Date == request.SearchByDateRegistred.Value.Date).ToList();
-                    resDTO.TotalCount = lstUser.Count;
-                }
-                if (request.SearchByLastLogin != null)
-                {
-                    lstUser = lstUser.Where(x => x.LastLogin /*.Date*/ == request.SearchByLastLogin.Value.Date).ToList();
-                    resDTO.TotalCount = lstUser.Count;
-                }
-                //if (request.SearchByNoOfCourses != null && !string.IsNullOrWhiteSpace(request.SearchByNoOfCourses.Trim()))
-                //{
-                //    lstUser = lstUser.Where(x => x.NoOfCourses == request.NoOfCourses).ToList();
-                //    resDTO.TotalCount = lstUser.Count;
-                //}
-                if (request.UserType != null && !string.IsNullOrWhiteSpace(request.UserType.Trim()) && request.UserType.Trim() == UserType.Student.ToString().Trim())
-                {
-                    lstUser = lstUser.Where(x => x.UserType == request.UserType.Trim()).ToList();   
-                    resDTO.TotalCount = lstUser.Count;
-                }
-                if(request.UserType != null && !string.IsNullOrWhiteSpace(request.UserType.Trim()) && request.UserType.Trim() == UserType.Tutor.ToString().Trim())
-                {
-                    lstUser = lstUser.Where(x => x.UserType == request.UserType.Trim()).ToList();
-                    resDTO.TotalCount = lstUser.Count;
+                    lstUser = lstUser.Where(x => x.UserType == (Convert.ToBoolean(request.IsTutor) ? "Tutor" : "Student")).ToList();
                 }
 
                 if (request.OrderBy == true)
                 {
-                    resDTO.UserLists = lstUser.OrderBy(x => x.Id)
-                                           .Skip((request.Page - 1) * request.ItemsPerPage)
-                                           .Take(request.ItemsPerPage).ToList();
+                    lstUser = lstUser.OrderBy(x => x.Id)
+                                            .Skip((request.Page - 1) * request.ItemsPerPage)
+                                            .Take(request.ItemsPerPage).ToList();
                 }
                 else
                 {
-                    resDTO.UserLists = lstUser.OrderByDescending(x => x.Id)
+                    lstUser = lstUser.OrderByDescending(x => x.Id)
                                            .Skip((request.Page - 1) * request.ItemsPerPage)
                                             .Take(request.ItemsPerPage).ToList();
                 }
-
+                resDTO.TotalCount = lstUser.Count;
+                resDTO.UserLists = lstUser;
                 if (lstUser.Count > 0)
                 {
                     response.Data = resDTO;
-                    response.Message = "data found successfully!";
+                    response.Message = "Data found successfully!";
                     response.Status = true;
                     response.StatusCode = System.Net.HttpStatusCode.OK;
                 }
                 else
                 {
-                    response.Message = " data not found!";
+                    response.Message = "Data not found!";
                     response.Status = false;
                     response.StatusCode = System.Net.HttpStatusCode.BadRequest;
                 }
@@ -111,55 +82,217 @@ namespace BussinessLayer
             return response;
         }
 
-        public async Task<CommonResponse> AddUser(AddUserReqDTO request)
+        public async Task<CommonResponse> GetAllTutor(GetAllTutorReqDTO request)
+        {
+            CommonResponse response = new CommonResponse();
+            try
+            {
+                GetAllTutorResDTO resDTO = new GetAllTutorResDTO();
+                var lstUser = await (from userDetail in _commonRepo.UserMstList().Where(x => x.UserType == UserType.Tutor.ToString())
+                                     select new
+                                     {
+                                         userDetail.Id,
+                                         DateRegistred = userDetail.CreatedDate.Date,
+                                         //AssociatedCourses
+                                         //Student
+                                         //CourseStatus
+                                         userDetail.LastLogin,
+                                     }).ToListAsync();
+
+                if (request.Search != null && !string.IsNullOrWhiteSpace(request.Search.Trim()))
+                {
+                    lstUser = lstUser.Where(x => x.Id.ToString() == request.Search).ToList();
+                }
+
+                if (request.OrderBy == true)
+                {
+                    lstUser = lstUser.OrderBy(x => x.Id)
+                                            .Skip((request.Page - 1) * request.ItemsPerPage)
+                                            .Take(request.ItemsPerPage).ToList();
+                }
+                else
+                {
+                    lstUser = lstUser.OrderByDescending(x => x.Id)
+                                           .Skip((request.Page - 1) * request.ItemsPerPage)
+                                            .Take(request.ItemsPerPage).ToList();
+                }
+                resDTO.TotalCount = lstUser.Count;
+                resDTO.UserLists = lstUser;
+                if (lstUser.Count > 0)
+                {
+                    response.Data = resDTO;
+                    response.Message = "Data found successfully!";
+                    response.Status = true;
+                    response.StatusCode = System.Net.HttpStatusCode.OK;
+                }
+                else
+                {
+                    response.Message = "Data not found!";
+                    response.Status = false;
+                    response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                }
+            }
+            catch { throw; }
+            return response;
+        }
+
+        public async Task<CommonResponse> GetAllStudent(GetAllStudentReqDTO request)
+        {
+            CommonResponse response = new CommonResponse();
+            try
+            {
+                GetAllStudentResDTO resDTO = new GetAllStudentResDTO();
+                var lstUser = await (from userDetail in _commonRepo.UserMstList().Where(x => x.UserType == UserType.Student.ToString())
+                                     select new
+                                     {
+                                         userDetail.Id,
+                                         DateRegistred = userDetail.CreatedDate.Date,
+                                         //AssociatedCourses
+                                         //Tutor
+                                         userDetail.LastLogin,
+                                     }).ToListAsync();
+
+                if (request.Search != null && !string.IsNullOrWhiteSpace(request.Search.Trim()))
+                {
+                    lstUser = lstUser.Where(x => x.Id.ToString() == request.Search).ToList();
+                }
+
+                if (request.OrderBy == true)
+                {
+                    lstUser = lstUser.OrderBy(x => x.Id)
+                                            .Skip((request.Page - 1) * request.ItemsPerPage)
+                                            .Take(request.ItemsPerPage).ToList();
+                }
+                else
+                {
+                    lstUser = lstUser.OrderByDescending(x => x.Id)
+                                           .Skip((request.Page - 1) * request.ItemsPerPage)
+                                            .Take(request.ItemsPerPage).ToList();
+                }
+                resDTO.TotalCount = lstUser.Count;
+                resDTO.UserLists = lstUser;
+                if (lstUser.Count > 0)
+                {
+                    response.Data = resDTO;
+                    response.Message = "Data found successfully!";
+                    response.Status = true;
+                    response.StatusCode = System.Net.HttpStatusCode.OK;
+                }
+                else
+                {
+                    response.Message = "Data not found!";
+                    response.Status = false;
+                    response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                }
+            }
+            catch { throw; }
+            return response;
+        }
+
+        public async Task<CommonResponse> AddEditUser(AddEditUserReqDTO request)
         {
             CommonResponse response = new CommonResponse();
             try
             {
                 UserMst user = new UserMst();
-                AddUserResDTO resDTO = new AddUserResDTO();
+                AddEditUserResDTO resDTO = new AddEditUserResDTO();
 
                 int loggedInUserId = _commonHelper.GetLoggedInUserIdAsync();
                 DateTime currentDateTime = _commonHelper.GetCurrentDateTime();
                 string Password = _commonHelper.GenerateRandomPassword();
 
-                bool isExist = await _commonRepo.UserMstList().AnyAsync(x => x.Email == request.Email || x.PhoneNo == request.PhoneNo);
-
-                if (isExist == false)
+                if (request.Id != 0)
                 {
-                    user.IsActive = true;
-                    user.IsDelete = false;
-                    user.CreatedBy = loggedInUserId;
-                    user.UpdatedBy = loggedInUserId;
-                    user.CreatedDate = currentDateTime;
-                    user.UpdatedDate = currentDateTime;
-                    user.UserType = request.UserType;
-                    user.FirstName = request.FirstName;
-                    user.LastName = request.LastName;
-                    user.PhoneNo = request.PhoneNo;
-                    user.Email = request.Email;
-                    user.DefaultRate = request.DefaultRate;
-                    user.TimeZone = request.TimeZone;
-                    user.Localization = request.Localization;
-                    user.GuardianName = request.GuardianName;
-                    user.GuardianPhone = request.GuardianPhone;
-                    user.Password = Password;
+                    var userDetail = await _commonRepo.UserMstList().FirstOrDefaultAsync(x => x.Id == request.Id);
+                    if (userDetail != null)
+                    {
+                        if (_commonRepo.UserMstList().FirstOrDefault(x => x.Email.Trim() == request.Email.Trim() && x.Id != request.Id) != null)
+                        {
+                            response.Status = false;
+                            response.Message = "Email already exists!";
+                            response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                        }
+                        else if (_commonRepo.UserMstList().FirstOrDefault(x => x.PhoneNo.Trim() == request.PhoneNo.Trim() && x.Id != request.Id) != null)
+                        {
+                            response.Status = false;
+                            response.Message = "Phone No. already exists!";
+                            response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                        }
+                        else
+                        {
+                            var tokenDetail = await _commonRepo.TokenMstList().FirstOrDefaultAsync(x => x.UserId == request.Id);
 
-                    await _dbContext.UserMsts.AddAsync(user);
-                    await _dbContext.SaveChangesAsync();
+                            userDetail.UpdatedBy = loggedInUserId;
+                            userDetail.UpdatedDate = currentDateTime;
+                            userDetail.UserType = request.UserType;
+                            userDetail.FirstName = request.FirstName;
+                            userDetail.LastName = request.LastName;
+                            userDetail.PhoneNo = request.PhoneNo;
+                            userDetail.Email = request.Email;
+                            userDetail.DefaultRate = request.DefaultRate;
+                            userDetail.TimeZone = request.TimeZone;
+                            userDetail.Localization = request.Localization;
+                            userDetail.GuardianName = request.GuardianName;
+                            userDetail.GuardianPhone = request.GuardianPhone;
+                            if (tokenDetail != null)
+                            {
+                                userDetail.LastLogin = tokenDetail.UpdatedDate.Date;
+                            }
 
-                    resDTO.Id = user.Id;
-                    response.Data = resDTO;
-                    response.Status = true;
-                    response.Message = "User Added Successfully!";
-                    response.StatusCode = System.Net.HttpStatusCode.OK;
+                            _dbContext.Entry(userDetail).State = EntityState.Modified;
+                            await _dbContext.SaveChangesAsync();
+
+                            resDTO.Id = userDetail.Id;
+                            response.Data = resDTO;
+                            response.Status = true;
+                            response.Message = "User Updated Successfully!";
+                            response.StatusCode = System.Net.HttpStatusCode.OK;
+                        }
+                    }
+                    else
+                    {
+                        response.Message = "Id is invalid!";
+                        response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                    }
                 }
                 else
                 {
-                    response.Status = false;
-                    response.Message = "Email Id or Phone No. already exists";
+                    bool isExist = await _commonRepo.UserMstList().AnyAsync(x => x.Email == request.Email || x.PhoneNo == request.PhoneNo);
 
-                    response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                    if (isExist == false)
+                    {
+                        user.IsActive = true;
+                        user.IsDelete = false;
+                        user.CreatedBy = loggedInUserId;
+                        user.UpdatedBy = loggedInUserId;
+                        user.CreatedDate = currentDateTime;
+                        user.UpdatedDate = currentDateTime;
+                        user.UserType = request.UserType;
+                        user.FirstName = request.FirstName;
+                        user.LastName = request.LastName;
+                        user.PhoneNo = request.PhoneNo;
+                        user.Email = request.Email;
+                        user.DefaultRate = request.DefaultRate;
+                        user.TimeZone = request.TimeZone;
+                        user.Localization = request.Localization;
+                        user.GuardianName = request.GuardianName;
+                        user.GuardianPhone = request.GuardianPhone;
+                        user.Password = Password;
+
+                        await _dbContext.UserMsts.AddAsync(user);
+                        await _dbContext.SaveChangesAsync();
+
+                        resDTO.Id = user.Id;
+                        response.Data = resDTO;
+                        response.Status = true;
+                        response.Message = "User Added Successfully!";
+                        response.StatusCode = System.Net.HttpStatusCode.OK;
+                    }
+                    else
+                    {
+                        response.Message = "Email or Phone No. already exists";
+                        response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                    }
                 }
             }
             catch { throw; }
@@ -206,11 +339,11 @@ namespace BussinessLayer
                         userDetail.School = request.School;
                         userDetail.UseableHours = request.UseableHours;
                         userDetail.HourlyRate = request.HourlyRate;
-                        if(tokenDetail != null)
+                        if (tokenDetail != null)
                         {
                             userDetail.LastLogin = tokenDetail.UpdatedDate.Date;
                         }
-                       
+
                         _dbContext.Entry(userDetail).State = EntityState.Modified;
                         await _dbContext.SaveChangesAsync();
 
@@ -223,8 +356,7 @@ namespace BussinessLayer
                 }
                 else
                 {
-                    response.Status = false;
-                    response.Message = "User  Id  is not correct";
+                    response.Message = "Id  is invalid!";
                     response.StatusCode = System.Net.HttpStatusCode.BadRequest;
                 }
             }
@@ -238,7 +370,6 @@ namespace BussinessLayer
             try
             {
                 UpdateTutorResDTO resDTO = new UpdateTutorResDTO();
-
                 List<TutorOfferingDetail> lstTutorOfferingDetail = new List<TutorOfferingDetail>();
 
                 int loggedInUserId = _commonHelper.GetLoggedInUserIdAsync();
@@ -250,7 +381,7 @@ namespace BussinessLayer
                     if (_commonRepo.UserMstList().FirstOrDefault(x => x.PhoneNo.Trim() == request.PhoneNo.Trim() && x.Id != request.Id) != null)
                     {
                         response.Status = false;
-                        response.Message = "User Phone No. already exists";
+                        response.Message = "Phone No. already exists";
                         response.StatusCode = System.Net.HttpStatusCode.BadRequest;
                     }
                     else
@@ -260,7 +391,7 @@ namespace BussinessLayer
                             if (_commonRepo.TutorOfferingDetailList().FirstOrDefault(x => x.Subject == item.Subject && x.TutorId == request.Id) != null)
                             {
                                 response.Status = false;
-                                response.Message = "Subject already exists";
+                                response.Message = "Subject already exists!";
                                 response.StatusCode = System.Net.HttpStatusCode.BadRequest;
                                 return response;
                             }
@@ -311,8 +442,7 @@ namespace BussinessLayer
                 }
                 else
                 {
-                    response.Status = false;
-                    response.Message = "User Id is not correct";
+                    response.Message = "Id is invalid!";
                     response.StatusCode = System.Net.HttpStatusCode.BadRequest;
                 }
             }
