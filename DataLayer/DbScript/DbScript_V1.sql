@@ -2,8 +2,6 @@
 
 CREATE DATABASE ConnexcelDB
 
-
-
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'UserMst')
 BEGIN 
 	CREATE TABLE UserMst(
@@ -88,3 +86,37 @@ END
 
 --added on 10-01-2024 by PP-------------------------------------------END-----------------------------------------------
 --executed on local by PP on 10-01-2024---------------------------------------------------------------------------------
+
+--added on 12-01-2024 by PP-------------------------------------------START---------------------------------------------
+
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'CourseMst')
+BEGIN 
+	CREATE TABLE CourseMst(
+			Id int identity(1,1) primary key NOT NULL,
+			IsActive bit NOT NULL,
+			IsDelete bit NOT NULL,
+			CreatedBy int NOT NULL,
+			UpdatedBy int NOT NULL,
+			CreatedDate	datetime NOT NULL,
+			UpdatedDate	datetime NOT NULL,
+			CourseType nvarchar(50) NOT NULL,
+			NoofLessons	nvarchar(50) NOT NULL,
+			StartDate datetime NOT NULL,
+			EndDate	datetime NOT NULL,
+			StudentDefaultRate	decimal(10,3) NOT NULL,
+			CourseName nvarchar(100) NOT NULL,
+			Frequency nvarchar(50) NOT NULL,
+			Subject	nvarchar(100) NOT NULL,
+			Tutors nvarchar(100) NOT NULL,
+			CourseStatus nvarchar(50) NULL,
+			CourseConversion nvarchar(50) NULL
+	        );
+PRINT 'CourseMst Table Created' 
+END
+ELSE
+BEGIN 
+	PRINT 'CourseMst Table Already Exist' 
+END
+
+--added on 12-01-2024 by PP-------------------------------------------END-----------------------------------------------
+--executed on local by PP on 12-01-2024---------------------------------------------------------------------------------

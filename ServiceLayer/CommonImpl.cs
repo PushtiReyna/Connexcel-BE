@@ -16,6 +16,8 @@ namespace ServiceLayer
         public async Task<CommonResponse> GetTimeZone() => await _commonBLL.GetTimeZone();
         public async Task<CommonResponse> GetLocalization() => await _commonBLL.GetLocalization();
         public async Task<CommonResponse> GetPlatformPreference() => await _commonBLL.GetPlatformPreference();
+        public async Task<CommonResponse> GetCourseType() => await _commonBLL.GetCourseType();
+        public async Task<CommonResponse> GetCourseStatus() => await _commonBLL.GetCourseStatus();
     }
 
     public interface ICommon
@@ -24,5 +26,7 @@ namespace ServiceLayer
         public Task<CommonResponse> GetTimeZone();
         public Task<CommonResponse> GetLocalization();
         public Task<CommonResponse> GetPlatformPreference();
+        public Task<CommonResponse> GetCourseType();
+        public Task<CommonResponse> GetCourseStatus();
     }
 }

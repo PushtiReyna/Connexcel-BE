@@ -15,15 +15,14 @@ namespace BussinessLayer
                 if (userTypeList.Count > 0)
                 {
                     response.Data = userTypeList;
-                    response.Message = "Data found Suceessfull!";
                     response.Status = true;
+                    response.Message = "Data found Suceessfull!";
                     response.StatusCode = System.Net.HttpStatusCode.OK;
                 }
                 else
                 {
                     response.Message = "Data not found";
-                    response.Status = false;
-                    response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                    response.StatusCode = System.Net.HttpStatusCode.NotFound;
                 }
             }
             catch { throw; }
@@ -40,15 +39,14 @@ namespace BussinessLayer
                 if (timeZoneList.Count > 0)
                 {
                     response.Data = timeZoneList;
-                    response.Message = "Data found Suceessfull!";
                     response.Status = true;
+                    response.Message = "Data found Suceessfull!";
                     response.StatusCode = System.Net.HttpStatusCode.OK;
                 }
                 else
                 {
                     response.Message = "Data not found";
-                    response.Status = false;
-                    response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                    response.StatusCode = System.Net.HttpStatusCode.NotFound;
                 }
             }
             catch { throw; }
@@ -65,15 +63,14 @@ namespace BussinessLayer
                 if (localizationList.Count > 0)
                 {
                     response.Data = localizationList;
-                    response.Message = "Data found Suceessfull!";
                     response.Status = true;
+                    response.Message = "Data found Suceessfull!";
                     response.StatusCode = System.Net.HttpStatusCode.OK;
                 }
                 else
                 {
                     response.Message = "Data not found";
-                    response.Status = false;
-                    response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                    response.StatusCode = System.Net.HttpStatusCode.NotFound;
                 }
             }
             catch { throw; }
@@ -90,15 +87,62 @@ namespace BussinessLayer
                 if (platformPreferenceList.Count > 0)
                 {
                     response.Data = platformPreferenceList;
-                    response.Message = "Data found Suceessfull!";
                     response.Status = true;
+                    response.Message = "Data found Suceessfull!";
                     response.StatusCode = System.Net.HttpStatusCode.OK;
                 }
                 else
                 {
                     response.Message = "Data not found";
-                    response.Status = false;
-                    response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                    response.StatusCode = System.Net.HttpStatusCode.NotFound;
+                }
+            }
+            catch { throw; }
+            return response;
+        }
+
+        public async Task<CommonResponse> GetCourseType()
+        {
+            CommonResponse response = new CommonResponse();
+            try
+            {
+                var courseTypeList = ((CourseType[])Enum.GetValues(typeof(CourseType))).Select(x => new { Text = x.ToString() }).ToList();
+
+                if (courseTypeList.Count > 0)
+                {
+                    response.Data = courseTypeList;
+                    response.Status = true;
+                    response.Message = "Data found Suceessfull!";
+                    response.StatusCode = System.Net.HttpStatusCode.OK;
+                }
+                else
+                {
+                    response.Message = "Data not found";
+                    response.StatusCode = System.Net.HttpStatusCode.NotFound;
+                }
+            }
+            catch { throw; }
+            return response;
+        }
+
+        public async Task<CommonResponse> GetCourseStatus()
+        {
+            CommonResponse response = new CommonResponse();
+            try
+            {
+                var courseStatusList = ((CourseStatus[])Enum.GetValues(typeof(CourseStatus))).Select(x => new { Text = x.ToString() }).ToList();
+
+                if (courseStatusList.Count > 0)
+                {
+                    response.Data = courseStatusList;
+                    response.Status = true;
+                    response.Message = "Data found Suceessfull!";
+                    response.StatusCode = System.Net.HttpStatusCode.OK;
+                }
+                else
+                {
+                    response.Message = "Data not found";
+                    response.StatusCode = System.Net.HttpStatusCode.NotFound;
                 }
             }
             catch { throw; }

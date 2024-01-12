@@ -47,7 +47,7 @@ namespace BussinessLayer
 
                 if (request.IsTutor != null)
                 {
-                    lstUser = lstUser.Where(x => x.UserType == (Convert.ToBoolean(request.IsTutor) ? "Tutor" : "Student")).ToList();
+                    lstUser = lstUser.Where(x => x.UserType == (Convert.ToBoolean(request.IsTutor) ? UserType.Tutor.ToString() : UserType.Student.ToString())).ToList();
                 }
 
                 if (request.OrderBy == true)
@@ -67,15 +67,14 @@ namespace BussinessLayer
                 if (lstUser.Count > 0)
                 {
                     response.Data = resDTO;
-                    response.Message = "Data found successfully!";
                     response.Status = true;
+                    response.Message = "Data found successfully!";
                     response.StatusCode = System.Net.HttpStatusCode.OK;
                 }
                 else
                 {
                     response.Message = "Data not found!";
-                    response.Status = false;
-                    response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                    response.StatusCode = System.Net.HttpStatusCode.NotFound;
                 }
             }
             catch { throw; }
@@ -128,8 +127,7 @@ namespace BussinessLayer
                 else
                 {
                     response.Message = "Data not found!";
-                    response.Status = false;
-                    response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                    response.StatusCode = System.Net.HttpStatusCode.NotFound;
                 }
             }
             catch { throw; }
@@ -181,8 +179,7 @@ namespace BussinessLayer
                 else
                 {
                     response.Message = "Data not found!";
-                    response.Status = false;
-                    response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                    response.StatusCode = System.Net.HttpStatusCode.NotFound;
                 }
             }
             catch { throw; }
@@ -251,8 +248,8 @@ namespace BussinessLayer
                     }
                     else
                     {
-                        response.Message = "Id is invalid!";
-                        response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                        response.Message = "Id not found";
+                        response.StatusCode = System.Net.HttpStatusCode.NotFound;
                     }
                 }
                 else
@@ -356,8 +353,8 @@ namespace BussinessLayer
                 }
                 else
                 {
-                    response.Message = "Id  is invalid!";
-                    response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                    response.Message = "Id not found";
+                    response.StatusCode = System.Net.HttpStatusCode.NotFound;
                 }
             }
             catch { throw; }
@@ -442,8 +439,8 @@ namespace BussinessLayer
                 }
                 else
                 {
-                    response.Message = "Id is invalid!";
-                    response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                    response.Message = "Id not found";
+                    response.StatusCode = System.Net.HttpStatusCode.NotFound;
                 }
             }
             catch { throw; }

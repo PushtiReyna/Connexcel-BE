@@ -27,5 +27,20 @@
             Zhumu,
             Other
         }
+
+        public enum CourseType
+        {
+            LongTermCourse = 1,
+            ShortTermCourse,
+            UniversityCourse,
+            SpecialCourse
+        }
+
+        public enum CourseStatus
+        {
+            Ongoing = 1,
+            Pending,
+            Completed
+        }
     }
 }

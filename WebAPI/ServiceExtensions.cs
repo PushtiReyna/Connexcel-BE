@@ -17,11 +17,15 @@ namespace WebAPI
             services.AddScoped<AuthBLL>();
             services.AddScoped<CommonBLL>();
             services.AddScoped<UserBLL>();
+            services.AddScoped<CourseBLL>();
+            services.AddScoped<TutorBLL>();
 
             //Services
             services.AddScoped<IAuth, AuthImpl>();
             services.AddScoped<ICommon, CommonImpl>();
             services.AddScoped<IUser, UserImpl>();
+            services.AddScoped<ICourse, CourseImpl>();
+            services.AddScoped<ITutor, TutorImpl>();
 
         }
     }

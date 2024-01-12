@@ -15,6 +15,8 @@ public partial class DBContext : DbContext
     {
     }
 
+    public virtual DbSet<CourseMst> CourseMsts { get; set; }
+
     public virtual DbSet<TokenMst> TokenMsts { get; set; }
 
     public virtual DbSet<TutorOfferingDetail> TutorOfferingDetails { get; set; }
@@ -26,6 +28,27 @@ public partial class DBContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<CourseMst>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__CourseMs__3214EC07257E5156");
+
+            entity.ToTable("CourseMst");
+
+            entity.Property(e => e.CourseConversion).HasMaxLength(50);
+            entity.Property(e => e.CourseName).HasMaxLength(100);
+            entity.Property(e => e.CourseStatus).HasMaxLength(50);
+            entity.Property(e => e.CourseType).HasMaxLength(50);
+            entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+            entity.Property(e => e.EndDate).HasColumnType("datetime");
+            entity.Property(e => e.Frequency).HasMaxLength(50);
+            entity.Property(e => e.NoofLessons).HasMaxLength(50);
+            entity.Property(e => e.StartDate).HasColumnType("datetime");
+            entity.Property(e => e.StudentDefaultRate).HasColumnType("decimal(10, 3)");
+            entity.Property(e => e.Subject).HasMaxLength(100);
+            entity.Property(e => e.Tutors).HasMaxLength(100);
+            entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
+        });
+
         modelBuilder.Entity<TokenMst>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__TokenMst__3214EC071112EFF6");
@@ -40,7 +63,7 @@ public partial class DBContext : DbContext
 
         modelBuilder.Entity<TutorOfferingDetail>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__TutorOff__3214EC07E0D94DA0");
+            entity.HasKey(e => e.Id).HasName("PK__TutorOff__3214EC0796FB69E1");
 
             entity.Property(e => e.AgeGroup).HasMaxLength(50);
             entity.Property(e => e.CreatedDate).HasColumnType("datetime");

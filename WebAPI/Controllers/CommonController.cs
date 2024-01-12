@@ -7,7 +7,7 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class CommonController : ControllerBase
     {
         private readonly ICommon _iCommon;
@@ -60,6 +60,31 @@ namespace WebAPI.Controllers
             try
             {
                 response = await _iCommon.GetPlatformPreference();
+            }
+            catch { throw; }
+            return response;
+        }
+
+
+        [HttpGet("GetCourseType")]
+        public async Task<CommonResponse> GetCourseType()
+        {
+            CommonResponse response = new CommonResponse();
+            try
+            {
+                response = await _iCommon.GetCourseType();
+            }
+            catch { throw; }
+            return response;
+        }
+
+        [HttpGet("GetCourseStatus")]
+        public async Task<CommonResponse> GetCourseStatus()
+        {
+            CommonResponse response = new CommonResponse();
+            try
+            {
+                response = await _iCommon.GetCourseStatus();
             }
             catch { throw; }
             return response;

@@ -83,8 +83,8 @@ namespace Helper.CommonHelpers
                         res.EmailOrPhoneNo = userDetail.PhoneNo;
                     }
                     response.Data = res;
-                    response.Message = "login successfully";
                     response.Status = true;
+                    response.Message = "login successfully";
                     response.StatusCode = System.Net.HttpStatusCode.OK;
                 }
                 else
@@ -160,8 +160,8 @@ namespace Helper.CommonHelpers
                                 res.RefreshTokenExpiryTime = tokenDetail.RefreshTokenExpiryTime;
 
                                 response.Data = res;
-                                response.Message = "New token generated successfully";
                                 response.Status = true;
+                                response.Message = "New token generated successfully";
                                 response.StatusCode = System.Net.HttpStatusCode.OK;
                             }
                         }
