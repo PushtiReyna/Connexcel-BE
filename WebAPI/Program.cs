@@ -6,7 +6,7 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 using WebAPI;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 string connection = builder.Configuration["ConnectionStrings:EntitiesConnection"] ?? "";
 builder.Services.AddDbContext<DBContext>(x =>
